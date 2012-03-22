@@ -160,6 +160,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)draw:(TTStyleContext*)context {
   UIImage* image = [self imageForContext:context];
+  if (image == nil) {
+    image = self.defaultImage;
+  }
   if (image) {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSaveGState(ctx);
