@@ -38,15 +38,22 @@
 static const CGFloat kHPadding = 8.0f;
 static const CGFloat kVPadding = 7.0f;
 
+NSInteger kUIControlStateUninstalledState = 1<<3;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@interface TTButton ()
+@property (nonatomic) NSInteger uninstalledState;
+- (void)setUninstalledState;
+- (void)unsetUninstalledState;
+@end
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTButton
 
 @synthesize font        = _font;
 @synthesize isVertical  = _isVertical;
 @synthesize imageDelegate = _imageDelegate;
+@synthesize uninstalledState = _uninstalledState;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,6 +76,22 @@ static const CGFloat kVPadding = 7.0f;
   [super dealloc];
 }
 
+#pragma mark -
+#pragma mark private
+
+- (void)setUninstalledState {
+    self.uninstalledState |= kUIControlStateUninstalledState;
+    [self setNeedsDisplay];
+}
+
+- (void)unsetUninstalledState {
+    self.uninstalledState &= ~kUIControlStateUninstalledState;
+    [self setNeedsDisplay];
+}
+
+- (UIControlState)state {
+    return [super state] | self.uninstalledState;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -105,6 +128,7 @@ static const CGFloat kVPadding = 7.0f;
   static NSString* highlighted = @"highlighted";
   static NSString* selected = @"selected";
   static NSString* disabled = @"disabled";
+  static NSString* uninstalled = @"uninstalled";
   if (state & UIControlStateHighlighted) {
     return highlighted;
 
@@ -114,6 +138,9 @@ static const CGFloat kVPadding = 7.0f;
   } else if (state & UIControlStateDisabled) {
     return disabled;
 
+  } else if (state & kUIControlStateUninstalledState) {
+      return uninstalled;
+      
   } else {
     return normalKey;
   }
@@ -139,18 +166,19 @@ static const CGFloat kVPadding = 7.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTButtonContent*)contentForCurrentState {
-  TTButtonContent* content = nil;
-  if (self.selected) {
-    content = [self contentForState:UIControlStateSelected];
-
-  } else if (self.highlighted) {
-    content = [self contentForState:UIControlStateHighlighted];
-
-  } else if (!self.enabled) {
-    content = [self contentForState:UIControlStateDisabled];
-  }
-
-  return content ? content : [self contentForState:UIControlStateNormal];
+//  TTButtonContent* content = nil;
+//  if (self.selected) {
+//    content = [self contentForState:UIControlStateSelected];
+//
+//  } else if (self.highlighted) {
+//    content = [self contentForState:UIControlStateHighlighted];
+//
+//  } else if (!self.enabled) {
+//    content = [self contentForState:UIControlStateDisabled];
+//  }
+//
+//  return content ? content : [self contentForState:UIControlStateNormal];
+    return [self contentForState:self.state];
 }
 
 
@@ -435,6 +463,9 @@ static const CGFloat kVPadding = 7.0f;
 
   TTStyle* disabledStyle = [ss styleWithSelector:selector forState:UIControlStateDisabled];
   [self setStyle:disabledStyle forState:UIControlStateDisabled];
+    
+  TTStyle* uninstalledStyle = [ss styleWithSelector:selector forState:kUIControlStateUninstalledState];
+  [self setStyle:uninstalledStyle forState:kUIControlStateUninstalledState];
 }
 
 
