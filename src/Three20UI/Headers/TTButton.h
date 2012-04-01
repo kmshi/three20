@@ -57,4 +57,10 @@
 
 - (CGRect)rectForImage;
 
+//Here is customState: Uninstalled and Featured
+@property (nonatomic) NSInteger customState;
+- (void)setUninstalledState;
+- (void)setFeaturedState;
+- (void)unsetCustomState;
+
 @end
