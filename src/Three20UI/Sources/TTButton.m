@@ -73,24 +73,28 @@ NSInteger kUIControlStateFeaturedState    = 1<<4;
 }
 
 #pragma mark -
-#pragma mark private
+#pragma mark custom state
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setUninstalledState {
     self->_customState |= kUIControlStateUninstalledState;
     [self setNeedsDisplay];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFeaturedState {
     self->_customState |= kUIControlStateFeaturedState;
-    [self setNeedsDisplay];    
+    [self setNeedsDisplay];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unsetCustomState {
     self->_customState &= ~kUIControlStateUninstalledState;
     self->_customState &= ~kUIControlStateFeaturedState;
     [self setNeedsDisplay];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIControlState)state {
     return [super state] | self->_customState;
 }
@@ -131,7 +135,7 @@ NSInteger kUIControlStateFeaturedState    = 1<<4;
   static NSString* selected = @"selected";
   static NSString* disabled = @"disabled";
   static NSString* uninstalled = @"uninstalled";
-  static NSString* featured = @"featured";    
+  static NSString* featured = @"featured";
   if (state & UIControlStateHighlighted) {
     return highlighted;
 
@@ -146,7 +150,7 @@ NSInteger kUIControlStateFeaturedState    = 1<<4;
 
   } else if (state & kUIControlStateFeaturedState) {
       return featured;
-      
+
   } else {
     return normalKey;
   }
@@ -469,8 +473,9 @@ NSInteger kUIControlStateFeaturedState    = 1<<4;
 
   TTStyle* disabledStyle = [ss styleWithSelector:selector forState:UIControlStateDisabled];
   [self setStyle:disabledStyle forState:UIControlStateDisabled];
-    
-  TTStyle* uninstalledStyle = [ss styleWithSelector:selector forState:kUIControlStateUninstalledState];
+
+  TTStyle* uninstalledStyle = [ss styleWithSelector:selector
+                                           forState:kUIControlStateUninstalledState];
   [self setStyle:uninstalledStyle forState:kUIControlStateUninstalledState];
 
   TTStyle* featuredStyle = [ss styleWithSelector:selector forState:kUIControlStateFeaturedState];
