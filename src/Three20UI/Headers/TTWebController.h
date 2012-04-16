@@ -39,6 +39,7 @@
   UIActionSheet*    _actionSheet;
 
   id<TTWebControllerDelegate> _delegate;
+  BOOL isStatusBarHiden;
 }
 
 /**
