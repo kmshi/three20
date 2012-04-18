@@ -253,9 +253,6 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self updateToolbarWithOrientation:self.interfaceOrientation];
-    self->isStatusBarHiden = [UIApplication sharedApplication].statusBarHidden;
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    [self.navigationController setNavigationBarHidden:NO];
 }
 
 
@@ -264,8 +261,6 @@
   // If the browser launched the media player, it steals the key window and never gives it
   // back, so this is a way to try and fix that
   [self.view.window makeKeyWindow];
-    [[UIApplication sharedApplication] setStatusBarHidden:self->isStatusBarHiden];
-    [self.navigationController setNavigationBarHidden:self->isStatusBarHiden];
 
   [super viewWillDisappear:animated];
 }
