@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180A77F11556CDB300ADE025 /* TTTableActionItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 180A77F01556CDB300ADE025 /* TTTableActionItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		180A77F61556CDCA00ADE025 /* TTTableActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A77F51556CDC900ADE025 /* TTTableActionItem.m */; };
+		180A77F81556CDEA00ADE025 /* TTTableActionItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 180A77F71556CDE800ADE025 /* TTTableActionItemCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		180A77FA1556CDF900ADE025 /* TTTableActionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A77F91556CDF700ADE025 /* TTTableActionItemCell.m */; };
 		666E18E912945430001C1D97 /* TTSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E18E712945430001C1D97 /* TTSplitViewController.m */; };
 		666E18F51294543F001C1D97 /* TTSplitViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E18F41294543F001C1D97 /* TTSplitViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66ADC8C91290AC0200855386 /* TTExtensionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADC8C61290AC0200855386 /* TTExtensionsController.m */; };
@@ -440,6 +444,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180A77F01556CDB300ADE025 /* TTTableActionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableActionItem.h; path = Headers/TTTableActionItem.h; sourceTree = "<group>"; };
+		180A77F51556CDC900ADE025 /* TTTableActionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableActionItem.m; path = Sources/TTTableActionItem.m; sourceTree = "<group>"; };
+		180A77F71556CDE800ADE025 /* TTTableActionItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableActionItemCell.h; path = Headers/TTTableActionItemCell.h; sourceTree = "<group>"; };
+		180A77F91556CDF700ADE025 /* TTTableActionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableActionItemCell.m; path = Sources/TTTableActionItemCell.m; sourceTree = "<group>"; };
 		666E18E712945430001C1D97 /* TTSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTSplitViewController.m; path = Sources/TTSplitViewController.m; sourceTree = "<group>"; };
 		666E18F41294543F001C1D97 /* TTSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSplitViewController.h; path = Headers/TTSplitViewController.h; sourceTree = "<group>"; };
 		66ADC8C61290AC0200855386 /* TTExtensionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionsController.m; path = Sources/TTExtensionsController.m; sourceTree = "<group>"; };
@@ -1434,6 +1442,8 @@
 		6E6458321184E06F00F08CB1 /* Table Items */ = {
 			isa = PBXGroup;
 			children = (
+				180A77F01556CDB300ADE025 /* TTTableActionItem.h */,
+				180A77F51556CDC900ADE025 /* TTTableActionItem.m */,
 				6DD20D34141D0C1B00916A4A /* TTTableSettingsItem.h */,
 				6DD20D36141D0C2800916A4A /* TTTableSettingsItem.m */,
 				6E6455061184D4C500F08CB1 /* TTTableActivityItem.h */,
@@ -1481,6 +1491,8 @@
 		6E6458361184E10200F08CB1 /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
+				180A77F71556CDE800ADE025 /* TTTableActionItemCell.h */,
+				180A77F91556CDF700ADE025 /* TTTableActionItemCell.m */,
 				6DD20D3A141D0C4800916A4A /* TTTableSettingsItemCell.h */,
 				6DD20D38141D0C3A00916A4A /* TTTableSettingsItemCell.m */,
 				6E6454FE1184D4C500F08CB1 /* TTStyledTextTableCell.h */,
@@ -1882,6 +1894,8 @@
 				6EDAE9F6118CA5810008133C /* TTNavigator.h in Headers */,
 				6E86A8DB118CBF7500662DA5 /* TTNavigatorWindow.h in Headers */,
 				6E60820311B0C32600C93CD4 /* TTNavigationController.h in Headers */,
+				180A77F11556CDB300ADE025 /* TTTableActionItem.h in Headers */,
+				180A77F81556CDEA00ADE025 /* TTTableActionItemCell.h in Headers */,
 				6ECCA60011C0C105002296C7 /* TTLauncherHighlightView.h in Headers */,
 				66ADC8CF1290AC1200855386 /* TTExtensionsController.h in Headers */,
 				66ADCDA31291AA7E00855386 /* TTExtensionInfoController.h in Headers */,
@@ -2256,6 +2270,8 @@
 				6DD20D37141D0C2800916A4A /* TTTableSettingsItem.m in Sources */,
 				6DD20D39141D0C3A00916A4A /* TTTableSettingsItemCell.m in Sources */,
 				6D31FEDD1431268C006C6B7F /* TTTableSection.m in Sources */,
+				180A77F61556CDCA00ADE025 /* TTTableActionItem.m in Sources */,
+				180A77FA1556CDF900ADE025 /* TTTableActionItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

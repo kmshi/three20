@@ -59,9 +59,9 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
       [TTTableSubtitleItem itemWithText:@"TTTableSubtitleItem" subtitle:kLoremIpsum
                             imageURL:remoteImage defaultImage:defaultPerson
                             URL:@"tt://tableItemTest" accessoryURL:nil],
-      [TTTableMessageItem itemWithTitle:@"Bob Jones" caption:@"TTTableMessageItem"
+      [TTTableActionItem itemWithTitle:@"Bob Jones" caption:@"TTTableMessageItem"
                           text:kLoremIpsum timestamp:[NSDate date]
-                          imageURL:remoteImage URL:@"tt://tableItemTest"],
+                              imageURL:localImage target:self action:@selector(itemClicked:byButton:) buttonTitle:@"update"],
 
       @"Static Text",
       [TTTableTextItem itemWithText:@"TTTableTextItem"],
@@ -85,6 +85,11 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
 
 - (void)dealloc {
   [super dealloc];
+}
+
+- (void)itemClicked:(TTTableActionItem*)item byButton:(TTButton*)btn{
+    NSLog(@"itemClicked:%@",item.btnTitle);
+    btn.enabled = NO;
 }
 
 @end

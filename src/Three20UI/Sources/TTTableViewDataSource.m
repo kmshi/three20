@@ -33,6 +33,7 @@
 #import "Three20UI/TTTableActivityItem.h"
 #import "Three20UI/TTTableControlItem.h"
 #import "Three20UI/TTTableSettingsItem.h"
+#import "Three20UI/TTTableActionItem.h"
 
 // - Table Cells
 #import "Three20UI/TTTableMoreButtonCell.h"
@@ -49,6 +50,7 @@
 #import "Three20UI/TTStyledTextTableCell.h"
 #import "Three20UI/TTTableFlushViewCell.h"
 #import "Three20UI/TTTableSettingsItemCell.h"
+#import "Three20UI/TTTableActionItemCell.h"
 
 // Style
 #import "Three20Style/TTStyledText.h"
@@ -269,6 +271,9 @@
     } else if ([object isKindOfClass:[TTTableSubtitleItem class]]) {
       return [TTTableSubtitleItemCell class];
 
+    } else if ([object isKindOfClass:[TTTableActionItem class]]) {
+        return [TTTableActionItemCell class];
+        
     } else if ([object isKindOfClass:[TTTableMessageItem class]]) {
       return [TTTableMessageItemCell class];
 
