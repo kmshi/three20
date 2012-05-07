@@ -273,7 +273,7 @@
 
     } else if ([object isKindOfClass:[TTTableActionItem class]]) {
         return [TTTableActionItemCell class];
-        
+
     } else if ([object isKindOfClass:[TTTableMessageItem class]]) {
       return [TTTableMessageItemCell class];
 

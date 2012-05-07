@@ -11,12 +11,17 @@
     id _target;
     SEL _action;
     NSString* _btnTitle;
+    BOOL _enabled;
+    UITableViewCell* _cell;
 }
 
 @property (nonatomic, copy)   NSString* btnTitle;
 @property (nonatomic, assign) id target;
 @property (nonatomic, assign) SEL action;
+@property (nonatomic, assign) UITableViewCell* cell;
+@property (nonatomic, assign) BOOL enabled;
 
 + (id)itemWithTitle:(NSString*)title caption:(NSString*)caption text:(NSString*)text
-          timestamp:(NSDate*)timestamp imageURL:(NSString*)imageURL target:(id)target action:(SEL)action buttonTitle:(NSString*)btnTitle;
+          timestamp:(NSDate*)timestamp imageURL:(NSString*)imageURL target:(id)target
+             action:(SEL)action buttonTitle:(NSString*)btnTitle;
 @end

@@ -61,7 +61,7 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
                             URL:@"tt://tableItemTest" accessoryURL:nil],
       [TTTableActionItem itemWithTitle:@"Bob Jones" caption:@"TTTableMessageItem"
                           text:kLoremIpsum timestamp:[NSDate date]
-                              imageURL:localImage target:self action:@selector(itemClicked:byButton:) buttonTitle:@"update"],
+                              imageURL:localImage target:self action:@selector(itemClicked:) buttonTitle:@"update"],
 
       @"Static Text",
       [TTTableTextItem itemWithText:@"TTTableTextItem"],
@@ -87,9 +87,9 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
   [super dealloc];
 }
 
-- (void)itemClicked:(TTTableActionItem*)item byButton:(TTButton*)btn{
+- (void)itemClicked:(TTTableActionItem*)item{
     NSLog(@"itemClicked:%@",item.btnTitle);
-    btn.enabled = NO;
+    item.enabled = NO;
 }
 
 @end

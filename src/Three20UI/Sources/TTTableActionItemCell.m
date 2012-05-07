@@ -15,6 +15,8 @@
 @interface TTTableActionItemCell()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)buttonClicked:(TTButton*)btn;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) updateButtonState;
 @end
 
 
@@ -30,16 +32,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)buttonClicked:(TTButton*)btn{
     TTTableActionItem* item = self.object;
-    [item.target performSelector:item.action withObject:item withObject:_button];
+    [item.target performSelector:item.action withObject:item];
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setObject:(id)object {
     if (_item != object) {
         [super setObject:object];
         TTTableActionItem* item = object;
+        item.cell = self;
         if (item.btnTitle.length) {
             [self.button setTitle:item.btnTitle forState:UIControlStateNormal];
         }
+        self.button.enabled = item.enabled;
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,10 +51,17 @@
     if (!_button) {
         _button = [[TTButton buttonWithStyle:@"toolbarButton:" title:@""] retain];
         _button.frame = CGRectMake(4, 27, 60, 36);
-        [_button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [_button addTarget:self action:@selector(buttonClicked:)
+          forControlEvents:UIControlEventTouchUpInside];
         [self.accessoryView addSubview:_button];
     }
     return _button;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) updateButtonState{
+    TTTableActionItem* item = self.object;
+    self.button.enabled = item.enabled;
 }
 
 @end
