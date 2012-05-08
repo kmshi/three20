@@ -32,7 +32,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)buttonClicked:(TTButton*)btn{
     TTTableActionItem* item = self.object;
-    [item.target performSelector:item.action withObject:item];
+    NSIndexPath *indexPath = [(UITableView*)self.superview indexPathForCell:self];
+    [item.target performSelector:item.action withObject:item withObject:indexPath];
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setObject:(id)object {
