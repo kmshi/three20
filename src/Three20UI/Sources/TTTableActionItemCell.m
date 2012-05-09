@@ -48,7 +48,7 @@
 - (TTButton*)button {
     if (!_button) {
         _button = [[TTButton buttonWithStyle:@"toolbarButton:" title:@""] retain];
-        _button.frame = CGRectMake(4, 27, 60, 36);
+        _button.frame = CGRectMake(2, 27, 62, 36);
         [_button addTarget:self action:@selector(buttonClicked:)
           forControlEvents:UIControlEventTouchUpInside];
         [self.accessoryView addSubview:_button];
