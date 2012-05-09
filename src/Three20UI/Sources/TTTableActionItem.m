@@ -13,17 +13,15 @@
 
 @implementation TTTableActionItem
 
-@synthesize target      = _target;
-@synthesize action      = _action;
-@synthesize btnTitle    = _btnTitle;
-@synthesize cell        = _cell;
-@synthesize enabled     = _enabled;
+@synthesize actionDelegate      = _actionDelegate;
+@synthesize buttonTitle         = _buttonTitle;
+@synthesize cell                = _cell;
+@synthesize enabled             = _enabled;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-    TT_RELEASE_SAFELY(_btnTitle);
-    _target = nil;
-    _action = nil;
+    TT_RELEASE_SAFELY(_buttonTitle);
+    _actionDelegate = nil;
     _cell   = nil;
     [super dealloc];
 }
@@ -31,13 +29,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)itemWithTitle:(NSString*)title caption:(NSString*)caption text:(NSString*)text
           timestamp:(NSDate*)timestamp imageURL:(NSString*)imageURL
-          target:(id)target action:(SEL)action buttonTitle:(NSString*)btnTitle{
+        buttonTitle:(NSString*)buttonTitle actionDelegate:(id<TTTableActionDelegate>)actionDelegate{
     TTTableActionItem* item = [TTTableActionItem itemWithTitle:title caption:caption
                                                           text:text timestamp:timestamp
                                                       imageURL:imageURL URL:nil];
-    item.target = target;
-    item.action = action;
-    item.btnTitle = btnTitle;
+    item.actionDelegate = actionDelegate;
+    item.buttonTitle = buttonTitle;
     item.enabled = YES;
     return item;
 }
@@ -50,7 +47,7 @@
 - (id)initWithCoder:(NSCoder*)decoder {
 	self = [super initWithCoder:decoder];
     if (self) {
-        self.btnTitle = [decoder decodeObjectForKey:@"btnTitle"];
+        self.buttonTitle = [decoder decodeObjectForKey:@"buttonTitle"];
         self.enabled = [[decoder decodeObjectForKey:@"enabled"] boolValue];
     }
     return self;
@@ -60,8 +57,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)encodeWithCoder:(NSCoder*)encoder {
     [super encodeWithCoder:encoder];
-    if (self.btnTitle) {
-        [encoder encodeObject:self.btnTitle forKey:@"btnTitle"];
+    if (self.buttonTitle) {
+        [encoder encodeObject:self.buttonTitle forKey:@"buttonTitle"];
         [encoder encodeObject:[NSNumber numberWithBool:self.enabled] forKey:@"enabled"];
     }
 }
@@ -70,6 +67,14 @@
 - (void)setEnabled:(BOOL)enabled{
     if (_enabled != enabled) {
         _enabled = enabled;
+        if (_cell) [_cell performSelector:@selector(updateButtonState)];
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setButtonTitle:(NSString *)buttonTitle{
+    if (![_buttonTitle isEqualToString:buttonTitle]) {
+        _buttonTitle = [buttonTitle copy];
         if (_cell) [_cell performSelector:@selector(updateButtonState)];
     }
 }

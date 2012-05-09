@@ -33,7 +33,7 @@
 - (void)buttonClicked:(TTButton*)btn{
     TTTableActionItem* item = self.object;
     NSIndexPath *indexPath = [(UITableView*)self.superview indexPathForCell:self];
-    [item.target performSelector:item.action withObject:item withObject:indexPath];
+    [item.actionDelegate itemClicked:item atIndexPath:indexPath];
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setObject:(id)object {
@@ -41,10 +41,7 @@
         [super setObject:object];
         TTTableActionItem* item = object;
         item.cell = self;
-        if (item.btnTitle.length) {
-            [self.button setTitle:item.btnTitle forState:UIControlStateNormal];
-        }
-        self.button.enabled = item.enabled;
+        [self updateButtonState];
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,6 +59,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) updateButtonState{
     TTTableActionItem* item = self.object;
+    if (item.buttonTitle.length) {
+        [self.button setTitle:item.buttonTitle forState:UIControlStateNormal];
+    }
     self.button.enabled = item.enabled;
 }
 

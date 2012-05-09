@@ -7,21 +7,25 @@
 //
 #import "Three20UI/TTTableMessageItem.h"
 
+@protocol TTTableActionDelegate;
+
 @interface TTTableActionItem : TTTableMessageItem{
-    id _target;
-    SEL _action;
-    NSString* _btnTitle;
+    id<TTTableActionDelegate> _actionDelegate;
+    NSString* _buttonTitle;
     BOOL _enabled;
     UITableViewCell* _cell;
 }
 
-@property (nonatomic, copy)   NSString* btnTitle;
-@property (nonatomic, assign) id target;
-@property (nonatomic, assign) SEL action;
-@property (nonatomic, assign) UITableViewCell* cell;
+@property (nonatomic, copy)   NSString* buttonTitle;
+@property (nonatomic, weak) id<TTTableActionDelegate> actionDelegate;
+@property (nonatomic, weak) UITableViewCell* cell;
 @property (nonatomic, assign) BOOL enabled;
 
 + (id)itemWithTitle:(NSString*)title caption:(NSString*)caption text:(NSString*)text
-          timestamp:(NSDate*)timestamp imageURL:(NSString*)imageURL target:(id)target
-             action:(SEL)action buttonTitle:(NSString*)btnTitle;
+          timestamp:(NSDate*)timestamp imageURL:(NSString*)imageURL
+        buttonTitle:(NSString*)buttonTitle actionDelegate:(id<TTTableActionDelegate>)actionDelegate;
+@end
+
+@protocol TTTableActionDelegate <NSObject>
+- (void)itemClicked:(TTTableActionItem*)item atIndexPath:(NSIndexPath*)indexPath;
 @end

@@ -61,7 +61,7 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
                             URL:@"tt://tableItemTest" accessoryURL:nil],
       [TTTableActionItem itemWithTitle:@"Bob Jones" caption:@"TTTableMessageItem"
                           text:kLoremIpsum timestamp:[NSDate date]
-                              imageURL:localImage target:self action:@selector(itemClicked:atIndexPath:) buttonTitle:@"update"],
+                              imageURL:localImage buttonTitle:@"update" actionDelegate:self],
 
       @"Static Text",
       [TTTableTextItem itemWithText:@"TTTableTextItem"],
@@ -88,8 +88,9 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
 }
 
 - (void)itemClicked:(TTTableActionItem*)item atIndexPath:(NSIndexPath*)indexPath{
-    NSLog(@"itemClicked:%@ %@",item.btnTitle,indexPath);
+    NSLog(@"itemClicked:%@ %@",item.buttonTitle,indexPath);
     //item.enabled = NO;
+    //item.buttonTitle = @"download...";
     
     [(TTSectionedDataSource*)self.dataSource removeItemAtIndexPath:indexPath];
     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]  withRowAnimation:UITableViewRowAnimationFade];
