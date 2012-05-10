@@ -22,10 +22,18 @@
 
 @implementation TTTableActionItemCell
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
+    TTTableActionItem* item = object;
+    if (item.text.length) {
+        return 90;
+    }
+    return 60;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
 	self = [super initWithStyle:style reuseIdentifier:identifier];
     if (self) {
-        self.accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 68, 90)];
     }
     return self;
 }
@@ -47,8 +55,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTButton*)button {
     if (!_button) {
+        self.accessoryView = [[[UIView alloc] initWithFrame:
+            CGRectMake(0, 0, 68, self.detailTextLabel.text.length?90:60)] autorelease];
         _button = [[TTButton buttonWithStyle:@"toolbarButton:" title:@""] retain];
-        _button.frame = CGRectMake(2, 27, 62, 36);
+        _button.frame = CGRectMake(2, self.detailTextLabel.text.length?27:12, 62, 36);
         [_button addTarget:self action:@selector(buttonClicked:)
           forControlEvents:UIControlEventTouchUpInside];
         [self.accessoryView addSubview:_button];
